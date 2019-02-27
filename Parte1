@@ -1,0 +1,53 @@
+da importação aleatória randint
+importar timeit
+
+import matplotlib as mpl
+mpl.use ( ' Agg ' )
+import matplotlib.pyplot como plt
+
+def  geraLista ( tam , caso ): # 1 - melhor / 2 - medio / 3 - pior
+	lista = []
+	if (caso ==  " melhor " ):
+		para eu na  faixa ( 0 , tam):
+			lista.append (i)
+	elif (caso ==  " medio " ):
+		enquanto  len (lista) < tam:
+			n = randint ( 1 , 1 * tam)
+			se n não está  na lista: lista.append (n)
+	elif (caso ==  " pior " ):
+		para eu na  faixa (tam - 1 , - 1 , - 1 ):
+			lista.append (i)
+	return lista
+
+def  selectionSort ( serie ): # arg .: lista com as séries a seres ordenadas
+	para eu na  faixa ( len (série) - 1 , 0 , - 1 ):
+		menor =  0
+		para j no  intervalo ( 1 , i + 1 ):
+			if (serie [j] > serie [menor]):
+				menor = j
+		serie [i], serie [menor] = serie [menor], serie [i]
+	retornar serie
+
+
+def  geraGraf ( x , lab , y , xl , yl , filew ):
+	núcleos = [ ' azul ' , ' verde ' , ' vermelho ' , ' roxo ' , ' preto ' ]
+	fig = plt.figure ( figsize = ( 10 , 10 ))
+	ax = fig.add_subplot ( 111 )
+	para i no  intervalo ( 0 , len (lab)):
+		ax.plot (x, y [i], label = lab [i], markerfacecolor = núcleos [i], markersize = 12 )
+	ax.legend ( bbox_to_anchor = ( 1 , 1 ), bbox_transform = plt.gcf (). transFigura)
+	plt.ylabel (yl)
+	plt.xlabel (xl)
+	fig.savefig (filew)
+
+series = [ 1000 , 2000 , 3000 , 4000 , 6000 ]
+casos = [ " melhor " , " medio " , " pior " ]
+tempos = []
+para tam em série:
+	t = []
+	para c em casos:
+		t.append (timeit.timeit ( " selectionSort ( {} ) " .format (geraLista (tam, c)), setup = " de __main__ import selectionSort " , número = 1 ))
+	tempos.append (t)
+geraGraf (letras, séries, tempos, " Casos " , " Tempo " , " tempos.png " )
+
+print ( " Finish " )

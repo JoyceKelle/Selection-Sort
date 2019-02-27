@@ -1,0 +1,40 @@
+importar timeit
+de permutas de            importação itertools
+
+import matplotlib as mpl
+mpl.use ( ' Agg ' )
+import matplotlib.pyplot como plt
+
+def  selectionSort ( serie ): # arg .: lista com as séries a seres ordenadas
+	para eu na  faixa ( len (série) - 1 , 0 , - 1 ):
+		menor =  0
+		para j no  intervalo ( 1 , i + 1 ):
+			if (serie [j] > serie [menor]):
+				menor = j
+		serie [i], serie [menor] = serie [menor], serie [i]
+	retornar serie
+
+def  geraLista ( tam ): # lista de permutações com filtro de tupla
+	lista = []
+	permutados =  lista (permutações ( range (tam))) # recebe uma lista de tuplas com permutações
+	para i no  intervalo ( 0 , len (permuts)): # para para remover como tuplas ()
+		tupla = []
+		para j no  intervalo ( 0 , len (permuts [i])):
+			tupla.append (permuts [i] [j])
+		lista.append (tupla)
+	return lista
+
+def  tempListas ( serie ): # seleção de seleção em cada caso
+	tempo = []
+	para i no  intervalo ( 0 , len (série)):
+		imprimir (serie [i])
+		tempo.append (timeit.timeit ( " selectionSort ( {} ) " .format (série [i]), setup = " from __main__ import selectionSort " , número = 1 ))
+	tempo de retorno
+
+* ************************************************* *****
+* ******* INICIO SELECTION *****************
+* ************************************************* *****
+series = geraLista ( 6 ) # gera uma lista de séries de tamanho 6 com todas as permutaçõess
+tempos = tempListas (séries) # lista uma lista com o tempo de ordenação de cada permutação
+print ( " O pior caso é a sequência: " + str (séries [tempos.index ( max (tempos))]))
+print ( " O melhor caso é a sequência: " + str (séries [tempos.index ( min (tempos))]))
